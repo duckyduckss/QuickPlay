@@ -50,16 +50,3 @@ Accounts, sessions, uploads, likes, reviews, replies, and campaigns are stored i
 The database migration preserves existing uploads and comments. Older comments appear as unrated reviews. Older anonymous uploads are associated with a developer account on sign-up/log-in only when the original visitor cookie matches; otherwise they remain public without a developer owner.
 
 `QUICKPLAY_DATA` sets the data directory. `QUICKPLAY_PORT` sets the port (default 4174). The server binds to localhost and is intended for local use. The Python API must run alongside the frontend; static-only hosting cannot provide these features.
-
-## Validation
-
-```sh
-python3 -m unittest discover -s tests -v
-node --check dist/app.js
-node --check dist/social.js
-node --check dist/workspace.js
-```
-
-The tests run the real HTTP handlers in memory without a network socket. They cover account validation, password/session behavior, expiration and logout, developer/player access, upload ownership and sandbox headers, verified review identity, duplicate review prevention, feedback privacy, read states and replies, campaign authorization and server-owned prices, duplicate campaigns, expiry, cross-origin rejection, database migration, and persistence.
-
-Browser visual testing could not run in the editing environment because network socket creation and Chromium's required process sockets are restricted. Test the rendered desktop and mobile layouts by running the server locally.

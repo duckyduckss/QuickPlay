@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101112"><title>QuickPlay — Find your next game</title>
+  <meta name="description" content="Discover indie games, play instant browser demos, and help developers build your next favorite.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23d5ff5f'/%3E%3Cpath d='M12 8L25 16L12 24Z' fill='%23101112'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/workspace.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/"><span class="brand-icon">▶</span>QuickPlay<span class="brand-dot">.</span></a>
+  <p class="eyebrow">LESS WATCHING. MORE PLAYING.</p>
+  <nav aria-label="Main navigation">
+    <span class="nav-heading">DISCOVER</span>
+    <button class="nav active" data-view="feed"><span data-icon="grid"></span>For you</button>
+    <button class="nav" data-view="saved"><span data-icon="bookmark"></span>Saved games <span id="saved-count" class="count">0</span></button>
+    <span class="nav-heading create-heading">CREATE</span>
+    <button class="nav" data-view="studio"><span data-icon="gamepad"></span>Developer studio</button>
+    <button class="nav" data-view="feedback"><span data-icon="message"></span>Player feedback<span id="unread-count" class="count hidden">0</span></button>
+  <button class="nav hidden" id="marketing-nav" data-view="marketing"><span data-icon="megaphone"></span>Promote your game<span class="nav-new">NEW</span></button></nav>
+  <div class="side-bottom">
+    <div class="side-community"><span class="mini-mark">✦</span><h3>Small demos.<br>Big discoveries.</h3><p>A little play can shape<br>the next great game.</p><button class="text-button" data-auth="signup">Join the community <span>↗</span></button></div>
+    <div class="foot">Made for players. Built for creators.<br>QuickPlay © 2026</div>
+  </div>
+</aside>
+<main>
+  <header><div class="header-title">Discover <span>your next obsession.</span></div><div class="header-actions"><button class="upload-shortcut secondary" data-view="studio"><span data-icon="plus"></span> Upload demo</button><div id="account-actions"><button class="text-button" data-auth="login">Log in</button><button class="primary compact" data-auth="signup">Sign up <span>↗</span></button></div></div></header>
+  <section id="feed-view" class="view">
+    <div class="feed-top"><div><span class="overline">THE PLAYABLE FEED</span><h1>Don’t just watch. <em>Play.</em></h1></div><div class="tabs" aria-label="Game genre"><button class="selected" data-filter="All">For you</button><button data-filter="Arcade">Arcade</button><button data-filter="Puzzle">Puzzle</button></div></div>
+    <div class="feed-layout"><div id="feed" tabindex="0" aria-label="Game feed. Scroll vertically to discover games"></div><aside class="context"><span class="overline">A NEW WAY TO DISCOVER</span><h2>A little play.<br>A big possibility.</h2><p>Try something new in seconds. Stay for the games that pull you in.</p><div class="how"><span>01</span><div><b>Scroll to discover</b><p>One swipe. A different world.</p></div></div><div class="how"><span>02</span><div><b>Play right here</b><p>Tap play and take control.</p></div></div><div class="how"><span>03</span><div><b>Help it get better</b><p>Leave a review. Make a difference.</p></div></div><div class="tip"><span>↓</span> Scroll or swipe for the next game</div><div class="edition">THE FIRST DROP <span>03 GAMES</span></div></aside></div>
+  </section>
+  <section id="saved-view" class="view hidden"><span class="overline">YOUR SHORTLIST</span><h1>Worth another round.</h1><div id="saved-grid" class="library"></div></section>
+  <section id="studio-view" class="view hidden">
+    <div class="page-heading"><div><span class="overline">YOUR DEVELOPER WORKSPACE</span><h1>Let your game do the talking<span class="lime">.</span></h1><p class="intro">Put your demo in players’ hands. See what sticks.</p></div><button class="secondary" data-view="feedback">Read player feedback <span>↗</span></button></div>
+    <div id="studio-gate" class="notice"></div>
+    <div id="metrics" class="metrics"></div>
+    <div class="studio-grid"><div><h2>Your demos</h2><p class="upload-help">Play metrics reflect this browser session.</p><div id="performance"></div><div class="studio-note"><span data-icon="message"></span><h3>Make the next version better.</h3><p>Players can rate your game, report bugs, and tell you what they love. All their reviews land in your feedback inbox.</p><button class="text-button" data-view="feedback">Open feedback inbox →</button></div></div>
+    <form id="submission"><div class="form-heading"><span class="icon-tile" data-icon="upload"></span><div><h2>Upload your game</h2><p class="upload-help">One file. A whole new world to try.</p></div></div>
+      <fieldset id="upload-fields"><label>Game title<input name="title" required maxlength="80" placeholder="Your next great game"></label><label>Studio name<input name="studio" required maxlength="80" placeholder="Your studio"></label><label>Description<textarea name="description" required maxlength="300" rows="3" placeholder="Give players a reason to jump in"></textarea></label><label class="file-zone"><span data-icon="upload"></span> Choose your demo<input name="file" required type="file" accept=".html,text/html"><span>Self-contained HTML + JavaScript · Up to 5 MB</span></label><p class="upload-help">Include scripts, styles, and assets in your HTML file. Demos run in an isolated browser player without network access.</p><label>Genre<select name="genre"><option>Arcade</option><option>Puzzle</option><option>Adventure</option><option>Strategy</option></select></label><button class="primary full-width" type="submit">Publish demo <span>↗</span></button></fieldset><p id="form-status" role="status"></p>
+    </form></div>
+  </section>
+  <section id="feedback-view" class="view hidden">
+    <div class="breadcrumb">Developer workspace <span>/</span> <b>Player feedback</b></div>
+    <div class="page-heading feedback-heading"><div><span class="overline"><span class="live-dot"></span> THE OTHER SIDE OF PLAY</span><h1>Listen. Learn. <em>Level up.</em></h1><p class="intro">Real thoughts from the people playing your games.</p></div><button class="secondary" id="refresh-feedback"><span data-icon="refresh"></span> Refresh</button></div>
+    <div id="feedback-notice" class="preview-notice"></div>
+    <div id="feedback-metrics" class="feedback-metrics"></div>
+    <div class="feedback-layout">
+      <div class="inbox-panel">
+        <div class="inbox-heading"><h2>Feedback inbox <span id="review-total"></span></h2><span class="muted inbox-caption">A conversation worth having.</span></div>
+        <div class="feedback-toolbar"><label class="search-field"><span data-icon="search"></span><input id="feedback-search" type="search" placeholder="Search reviews or players…" aria-label="Search reviews or players"></label><select id="feedback-game" aria-label="Filter reviews by game"><option value="all">All games</option></select></div>
+        <div class="inbox-tabs-row"><div class="inbox-tabs" role="group" aria-label="Review status"><button class="selected" data-review-tab="all">All reviews <span id="tab-all">0</span></button><button data-review-tab="unread">Unread <span id="tab-unread">0</span></button><button data-review-tab="replied">Replied <span id="tab-replied">0</span></button></div><select id="feedback-sort" aria-label="Sort reviews"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="highest">Highest rating</option><option value="lowest">Lowest rating</option></select></div>
+        <div id="feedback-list" aria-live="polite"></div><div id="feedback-footer" class="inbox-footer"></div>
+      </div>
+      <aside class="feedback-insights"><div class="insight-panel"><span class="overline">THE BIG PICTURE</span><h2>A little perspective.</h2><div id="rating-summary"></div><div id="rating-bars"></div><p class="insight-caption">Every star is a chance to get better.</p></div><div class="insight-panel"><h3>What players are talking about</h3><div id="category-summary"></div></div><div class="feedback-tip"><span class="tip-spark">✦</span><span class="overline">KEEP THE LOOP GOING</span><h3>Great feedback deserves a reply.</h3><p>A quick thank-you or an update on a fix goes a long way. Let your players know you’re listening.</p><div class="tip-footer">BUILD WITH YOUR PLAYERS <span>↗</span></div></div></aside>
+    </div>
+  </section>
+  <section id="marketing-view" class="view hidden">
+    <div class="breadcrumb">Developer workspace <span>/</span> <b>Promote your game</b></div>
+    <div class="page-heading"><div><span class="overline"><span class="live-dot"></span> GIVE YOUR GAME ITS MOMENT</span><h1>Great games deserve <em>to be seen.</em></h1><p class="intro">A little more visibility. A few more first plays. A chance to find your people.</p></div><span class="developer-only">DEVELOPER EXCLUSIVE</span></div>
+    <div class="preview-notice marketing-demo-notice"><span><b>DEMO CHECKOUT</b> Try a visibility campaign in this local app. No real payment is collected.</span><span class="demo-pill">NO CHARGE</span></div>
+    <div class="promotion-explainer"><div><span data-icon="megaphone"></span><b>A place at the front of the feed</b><p>Active promoted demos appear before organic games, with a clear promotion label.</p></div><div><span data-icon="gamepad"></span><b>Your game does the talking</b><p>Players still choose what to play. Promotion never buys likes, reviews, or guaranteed engagement.</p></div><div><span data-icon="message"></span><b>More chances to learn</b><p>Bring new players into the conversation and read their reviews in your feedback inbox.</p></div></div>
+    <div class="section-heading"><div><span class="overline">PICK YOUR SPOTLIGHT</span><h2>Small investment. Bigger possibilities.</h2></div><span class="muted">One demo per campaign · USD</span></div>
+    <div id="promotion-plans" class="promotion-plans"></div>
+    <div class="campaigns-panel"><div class="inbox-heading"><h2>Your campaigns <span id="campaign-count">0</span></h2><button class="text-button" id="refresh-marketing">Refresh ↻</button></div><div id="campaign-list" aria-live="polite"></div></div>
+    <p class="marketing-footnote">Visibility priority lasts for the selected campaign period. Promoted games are ordered by their most recent publication date. Results depend on how players respond to your game.</p>
+  </section>
+  <section id="auth-view" class="view hidden">
+    <div class="auth-layout">
+      <div class="auth-story"><span class="overline"><span class="live-dot"></span> YOUR NEXT GREAT GAME STARTS HERE</span><h1>A little play.<br>A big <em>possibility.</em></h1><p>Meet the games you haven’t heard of yet.<br>And the people making them happen.</p>
+        <div class="auth-art" aria-hidden="true"><div class="orbit-label">INSTANT PLAY. ENDLESS POTENTIAL.</div><svg viewBox="0 0 450 320" fill="none"><defs><radialGradient id="space-glow"><stop stop-color="#d5ff5f" stop-opacity=".13"/><stop offset="1" stop-color="#d5ff5f" stop-opacity="0"/></radialGradient></defs><circle cx="225" cy="158" r="155" fill="url(#space-glow)"/><ellipse cx="225" cy="158" rx="173" ry="75" transform="rotate(-24 225 158)" stroke="#444c37"/><ellipse cx="225" cy="158" rx="128" ry="123" transform="rotate(-24 225 158)" stroke="#33392c" stroke-dasharray="3 9"/><circle cx="225" cy="158" r="69" stroke="#586343"/><circle cx="225" cy="158" r="91" stroke="#333d2a"/><circle cx="65" cy="213" r="9" fill="#bca4ff"/><circle cx="357" cy="68" r="5" fill="#d5ff5f"/><path d="M225 104L260 189L225 171L190 189L225 104Z" fill="#d5ff5f"/><path d="M219 184L225 209L231 184" fill="#d5ff5f" opacity=".5"/><path d="M93 58V70M87 64H99M350 238V250M344 244H356" stroke="#d5ff5f"/><circle cx="301" cy="37" r="2" fill="#747b65"/><circle cx="119" cy="281" r="2" fill="#747b65"/></svg><div class="floating-game game-one"><span class="tiny-game-art">✦</span><div><b>Orbit Breaker</b><small>One click. You’re in.</small></div><span class="tiny-play">▶</span></div><div class="floating-game game-two"><span class="review-bubble">♡</span><div><b>“Okay, one more round.”</b><small>Your next favorite is out there.</small></div></div></div>
+        <div class="auth-benefits"><span><span data-icon="zap"></span> No downloads</span><span><span data-icon="gamepad"></span> Indie discoveries</span><span><span data-icon="message"></span> Your voice matters</span></div>
+      </div>
+      <div class="auth-card"><div class="auth-mode-tabs"><button id="login-tab" data-auth="login">Log in</button><button id="signup-tab" data-auth="signup">Sign up</button></div><span class="overline" id="auth-eyebrow">WELCOME BACK</span><h2 id="auth-title">Ready for another round?</h2><p id="auth-description">Log in to pick up where you left off.</p>
+        <form id="auth-form"><fieldset id="role-fields"><legend>I’m here as a…</legend><div class="role-options"><label class="role-option"><input type="radio" name="role" value="player" checked><span data-icon="gamepad"></span><b>Player</b><small>Find your next favorite</small><span class="role-check">✓</span></label><label class="role-option"><input type="radio" name="role" value="developer"><span data-icon="code"></span><b>Developer</b><small>Share what you’re building</small><span class="role-check">✓</span></label></div></fieldset>
+          <label id="name-field">Your name<input name="name" maxlength="40" autocomplete="name" placeholder="What should we call you?"></label><label>Email address<input name="email" type="email" maxlength="254" autocomplete="email" required placeholder="you@example.com"></label><label>Password<div class="password-field"><input name="password" type="password" maxlength="128" autocomplete="current-password" required placeholder="Your password"><button id="toggle-password" type="button" aria-label="Show password" aria-pressed="false"><span data-icon="eye"></span></button></div><small id="password-hint" class="field-hint">At least 8 characters. Make it a good one.</small></label><p id="auth-status" role="status"></p><button id="auth-submit" class="primary full-width" type="submit">Log in <span>→</span></button><p class="auth-fineprint">Your account connects your games and feedback.<br>No downloads. Just jump in.</p>
+        </form><div class="auth-switch"><span id="auth-switch-text">New to QuickPlay?</span> <button class="text-button" id="auth-switch-button" data-auth="signup">Create an account ↗</button></div>
+      </div>
+    </div><div class="auth-page-footer">A home for small games and big ideas. <button class="text-button" data-view="feed">Explore the feed <span>↗</span></button></div>
+  </section>
+</main>
+<dialog id="promotion-checkout"><button id="close-checkout" class="close" aria-label="Close checkout">×</button><span class="overline">YOUR NEXT FIRST IMPRESSION</span><h2>Give your demo a boost.</h2><p>Choose your game and review your visibility campaign.</p><form id="promotion-form"><label>Your game<select name="gameId" required id="promotion-game"></select></label><div id="checkout-summary"></div><label class="checkout-consent"><input name="confirmDemo" type="checkbox" required><span>I understand this is a demo purchase. No money will be charged.</span></label><button class="primary full-width" id="confirm-promotion" type="submit">Activate demo promotion <span>↗</span></button><p id="promotion-status" role="status"></p></form><div class="checkout-fineprint">No payment card needed. Real payments are not configured.</div></dialog>
+<div id="toast" role="status"></div>
+<dialog id="details"><button id="close-details" class="close" aria-label="Close">×</button><div id="details-content"></div></dialog>
+<dialog id="comments-dialog"><button id="close-comments" class="close" aria-label="Close reviews">×</button><span class="overline">PLAY IT. TELL THEM WHAT YOU THINK.</span><h2 id="comments-title">Reviews</h2><div id="comments-list" aria-live="polite"></div><div id="review-auth-gate" class="notice"></div><form id="comment-form"><fieldset id="review-fields"><legend>Your review</legend><label>Your rating<div class="star-picker" role="group" aria-label="Choose a star rating"><button type="button" data-rating="1" aria-label="1 star">★</button><button type="button" data-rating="2" aria-label="2 stars">★</button><button type="button" data-rating="3" aria-label="3 stars">★</button><button type="button" data-rating="4" aria-label="4 stars">★</button><button type="button" data-rating="5" aria-label="5 stars">★</button><span id="rating-label">Choose a rating</span></div></label><label>What’s it about?<select name="category"><option>General</option><option>Gameplay</option><option>Visuals</option><option>Bug report</option><option>Suggestion</option></select></label><label>Your thoughts<textarea name="body" required maxlength="500" rows="3" placeholder="What worked? What could be better?"></textarea></label><button type="submit" class="primary full-width">Post review <span>↗</span></button></fieldset><p id="comment-status" role="status"></p></form></dialog>
+<script src="/app.js"></script><script src="/social.js"></script><script src="/workspace.js"></script>
+</body>
+</html>
